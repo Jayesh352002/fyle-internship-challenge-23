@@ -1,0 +1,56 @@
+<div>
+  <div style="margin-top: 50px">
+    <div class="container mx-auto bg-indigo-500 rounded-lg p-14">
+      <form class="form-inline" (submit)="searchUser()">
+        <h1 class="text-center font-bold text-white text-4xl">
+          Find GitHub Profiles
+        </h1>
+        <div
+          class="sm:flex items-center bg-white rounded-lg overflow-hidden px-2 py-1 justify-between"
+          style="margin-top: 30px"
+        >
+          <input
+            [(ngModel)]="githubUserQuery"
+            name="user"
+            class="text-base text-gray-400 flex-grow outline-none px-2"
+            type="search"
+            id="exampleInputGithubUsername1"
+            placeholder="Enter your github username"
+          />
+          <div class="ms:flex items-center px-2 rounded-lg space-x-4 mx-auto">
+            <button
+              type="submit"
+              class="bg-indigo-500 text-white text-base rounded-lg px-4 py-2 font-thin"
+            >
+              Search
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="row scrollbar-hide">
+    <div class="col">
+      <pre>
+      <app-github-profile *ngIf="notFound" [githubProfile]="githubProfile"></app-github-profile>
+     </pre>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <pre>
+     <app-github-repos *ngIf="notFound" [githubRepos]="githubRepos"></app-github-repos>
+     </pre>
+    </div>
+  </div>
+
+  <div style="margin-top: 20px" *ngIf="!notFound">
+    <h2 class="font-serif text-xl font-extrabold text-center text-red-950">
+      User Not Found !
+    </h2>
+  </div>
+
+  <ngx-ui-loader></ngx-ui-loader>
+</div>
